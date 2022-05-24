@@ -18,7 +18,9 @@
 
 #include "MeshData.h"
 #include "../pugixml/src/pugixml.hpp"
+#include <cstring>
 #include <iostream>
+#include <stdexcept> //For std::runtime_error.
 
 using namespace Savitar;
 
@@ -32,6 +34,16 @@ MeshData::~MeshData()
 
 }
 
+float parse_float(const pugi::xml_attribute& attribute)
+{
+    if(std::strchr(attribute.value(), ',') != nullptr)
+    {
+        // Until the implementation of more robust error-handling, it'll have to be done this way:
+        throw std::runtime_error("Comma's should not be used as decimal separators, locale should be set to \"C\" for .3MF files.");
+    }
+    return attribute.as_float();
+}
+
 void MeshData::fillByXMLNode(pugi::xml_node xml_node)
 {
     this->vertices.clear();
@@ -42,7 +54,7 @@ void MeshData::fillByXMLNode(pugi::xml_node xml_node)
     pugi::xml_node xml_vertices = xml_node.child("vertices");
     for(pugi::xml_node vertex = xml_vertices.child("vertex"); vertex; vertex = vertex.next_sibling("vertex"))
     {
-        Vertex temp_vertex = Vertex(vertex.attribute("x").as_float(), vertex.attribute("y").as_float(), vertex.attribute("z").as_float());
+        Vertex temp_vertex = Vertex(parse_float(vertex.attribute("x")), parse_float(vertex.attribute("y")), parse_float(vertex.attribute("z")));
         this->vertices.push_back(temp_vertex);
     }
 
@@ -85,30 +97,52 @@ bytearray MeshData::getFlatVerticesAsBytes()
         int v1 = faces.at(i).getV1();
         int v2 = faces.at(i).getV2();
         int v3 = faces.at(i).getV3();
+        float x, y, z;
         
         // Add vertices for face 1
-        float x = vertices.at(v1).getX();
-        float y = vertices.at(v1).getY();
-        float z = vertices.at(v1).getZ();
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        if (v1 >= 0 && v1 < vertices.size())
+        {
+            x = vertices.at(v1).getX();
+            y = vertices.at(v1).getY();
+            z = vertices.at(v1).getZ();
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        }
+        else
+        {
+            return bytearray();
+        }
 
         // Add vertices for face 2
-        x = vertices.at(v2).getX();
-        y = vertices.at(v2).getY();
-        z = vertices.at(v2).getZ();
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        if (v2 >= 0 && v2 < vertices.size())
+        {
+            x = vertices.at(v2).getX();
+            y = vertices.at(v2).getY();
+            z = vertices.at(v2).getZ();
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        }
+        else
+        {
+            return bytearray();
+        }
 
         // Add vertices for face 3
-        x = vertices.at(v3).getX();
-        y = vertices.at(v3).getY();
-        z = vertices.at(v3).getZ();
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
-        vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        if (v3 >= 0 && v3 < vertices.size())
+        {
+            x = vertices.at(v3).getX();
+            y = vertices.at(v3).getY();
+            z = vertices.at(v3).getZ();
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&x), reinterpret_cast<const uint8_t*>(&x) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&y), reinterpret_cast<const uint8_t*>(&y) + sizeof(float));
+            vertices_data.insert(vertices_data.end(), reinterpret_cast<const uint8_t*>(&z), reinterpret_cast<const uint8_t*>(&z) + sizeof(float));
+        }
+        else
+        {
+            return bytearray();
+        }
     }
     return vertices_data;
 }

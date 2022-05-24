@@ -1,7 +1,7 @@
 /*
  * This file is part of libSavitar
  *
- * Copyright (C) 2017 Ultimaker b.v. <j.vankessel@ultimaker.com>
+ * Copyright (C) 2021 Ultimaker B.V. <j.vankessel@ultimaker.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published
@@ -16,17 +16,18 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAVITAR_EXPORT_H
-#define SAVITAR_EXPORT_H
+class MetadataEntry
+{
+    %TypeHeaderCode
+    #include "MetadataEntry.h"
+    %End
 
-#if _WIN32
-    #ifdef MAKE_SAVITAR_LIB
-        #define SAVITAR_EXPORT __declspec(dllexport)
-    #else
-        #define SAVITAR_EXPORT
-    #endif
-#else
-    #define SAVITAR_EXPORT
-#endif
+public:
+    MetadataEntry(std::string value);
+    MetadataEntry(std::string value, std::string type);
+    MetadataEntry(std::string value, std::string type, bool preserve);
 
-#endif
+    std::string value;
+    std::string type;
+    bool preserve;
+};
