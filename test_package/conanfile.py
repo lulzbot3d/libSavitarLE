@@ -5,7 +5,7 @@ from conan.tools.env import VirtualRunEnv
 from conan.tools.files import copy
 
 
-class SavitarTestConan(ConanFile):
+class SavitarLETestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "VirtualRunEnv"
     test_type = "explicit"

@@ -1,11 +1,11 @@
 cmake_policy(SET CMP0091 NEW)
-project(libsavitar)
+project(libsavitarle)
 cmake_minimum_required(VERSION 3.20)
 find_package(standardprojectsettings REQUIRED)
 
 find_package(pugixml REQUIRED)
 
-set(savitar_SRCS
+set(savitarle_SRCS
         src/Namespace.cpp
         src/ThreeMFParser.cpp
         src/SceneNode.cpp
@@ -16,19 +16,19 @@ set(savitar_SRCS
         )
 
 if(BUILD_SHARED_LIBS)
-    add_library(Savitar SHARED ${savitar_SRCS})
+    add_library(SavitarLE SHARED ${savitarle_SRCS})
     if(WIN32)
-        set_target_properties(Savitar PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+        set_target_properties(SavitarLE PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
     endif()
 else()
-    add_library(Savitar STATIC ${savitar_SRCS})
+    add_library(Savitar STATIC ${savitarle_SRCS})
 endif()
 
-set_project_warnings(Savitar)
+set_project_warnings(SavitarLE)
 
-target_link_libraries(Savitar PUBLIC pugixml::pugixml)
+target_link_libraries(SavitarLE PUBLIC pugixml::pugixml)
 
-target_include_directories(Savitar
+target_include_directories(SavitarLE
         PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>

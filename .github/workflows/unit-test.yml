@@ -56,9 +56,9 @@ env:
 
 jobs:
     conan-recipe-version:
-        uses: ultimaker/cura/.github/workflows/conan-recipe-version.yml@main
+        uses: lulzbot3d/CuraLE/.github/workflows/conan-recipe-version.yml@main
         with:
-            project_name: savitar
+            project_name: savitarle
 
     testing:
         runs-on: ubuntu-20.04
@@ -100,13 +100,13 @@ jobs:
                 run: sudo apt install build-essential checkinstall zlib1g-dev libssl-dev ninja-build autoconf libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxdmcp-dev libxext-dev libxfixes-dev libxi-dev libxinerama-dev libxkbfile-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxrender-dev libxres-dev libxss-dev libxt-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev xtrans-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev xkb-data libxcb-dri3-dev uuid-dev libxcb-util-dev libxkbcommon-x11-dev -y
 
             -   name: Get Conan configuration
-                run: conan config install https://github.com/Ultimaker/conan-config.git
+                run: conan config install https://github.com/lulzbot3d/conan-config-le.git
 
             -   name: Install dependencies
                 run: conan install . ${{ needs.conan-recipe-version.outputs.recipe_id_full }} -o enable_testing=True -s build_type=Release --build=missing --update -g GitHubActionsRunEnv -g GitHubActionsBuildEnv
 
             -   name: Upload the Dependency package(s)
-                run: conan upload "*" -r cura --all -c
+                run: conan upload "*" -r cura-le --all -c
 
             -   name: Set Environment variables from Conan install (bash)
                 if: ${{ runner.os != 'Windows' }}
