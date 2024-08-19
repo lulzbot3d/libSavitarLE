@@ -21,7 +21,7 @@ if(BUILD_SHARED_LIBS)
         set_target_properties(SavitarLE PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
     endif()
 else()
-    add_library(Savitar STATIC ${savitarle_SRCS})
+    add_library(SavitarLE STATIC ${savitarle_SRCS})
 endif()
 
 set_project_warnings(SavitarLE)

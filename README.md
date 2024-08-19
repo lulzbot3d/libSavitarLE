@@ -22,7 +22,7 @@ Savitar is released under terms of the LGPLv3 License. Terms of the license can 
 http://www.gnu.org/licenses/lgpl.html
 
 > But in general it boils down to:  
-> **You need to share the source of any Savitar modifications if you make an application with Savitar.**
+> **You need to share the source of any SavitarLE modifications if you make an application with SavitarLE.**
 
 ## System Requirements
 
@@ -73,13 +73,13 @@ LulzBot developers need to request an account for our JFrog Artifactory server w
 conan remote remove cura-le
 ```
 
-### 2. Clone libSavitar
+### 2. Clone libSavitarLE
 ```bash
 git clone https://github.com/lulzbot3d/libSavitarLE.git
 cd libSavitarLE
 ```
 
-### 3. Install & Build libSavitar (Release OR Debug)
+### 3. Install & Build libSavitarLE (Release OR Debug)
 
 #### Release
 ```bash
