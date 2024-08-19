@@ -14,12 +14,12 @@ from conan.tools.scm import Version
 required_conan_version = ">=1.56.0"
 
 
-class SavitarConan(ConanFile):
-    name = "savitar"
+class SavitarLEConan(ConanFile):
+    name = "savitarle"
     license = "LGPL-3.0"
-    author = "Ultimaker B.V."
-    url = "https://github.com/Ultimaker/libSavitar"
-    description = "libSavitar is a c++ implementation of 3mf loading with SIP python bindings"
+    author = "Ultimaker B.V., FAME3D LLC."
+    url = "https://github.com/lulzbot3d/libSavitarLE"
+    description = "Fork of libSavitar: a c++ implementation of 3mf loading with SIP python bindings"
     topics = ("conan", "cura", "3mf", "c++")
     settings = "os", "compiler", "build_type", "arch"
     revision_mode = "scm"
@@ -64,7 +64,7 @@ class SavitarConan(ConanFile):
 
     def layout(self):
         cmake_layout(self)
-        self.cpp.package.libs = ["Savitar"]
+        self.cpp.package.libs = ["SavitarLE"]
 
         if self.settings.get_safe("build_type", "Release") == "Debug":
             self.cpp.package.defines = ["SAVITAR_DEBUG"]
@@ -84,7 +84,7 @@ class SavitarConan(ConanFile):
                 )
 
     def build_requirements(self):
-        self.test_requires("standardprojectsettings/[>=0.1.0]@ultimaker/stable")
+        self.test_requires("standardprojectsettings/[>=0.1.0]@lulzbot/stable")
         if self.options.enable_testing:
             self.test_requires("gtest/1.12.1")
 
