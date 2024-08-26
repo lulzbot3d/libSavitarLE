@@ -1,23 +1,15 @@
 # SavitarLE
 
-<p align="center">
-    <a href="https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml" alt="Conan Package">
-        <img src="https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml/badge.svg" /></a>
-    <a href="https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml" alt="Unit test">
-        <img src="https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml/badge.svg" /></a>
-    <a href="https://github.com/lulzbot3d/libSavitarLE" alt="Repo Size">
-        <img src="https://img.shields.io/github/repo-size/lulzbot3d/libSavitarLE?style=flat" /></a>
-    <a href="https://github.com/lulzbot3d/libSavitarLE/blob/master/LICENSE" alt="License">
-        <img src="https://img.shields.io/github/license/lulzbot3d/libSavitarLE?style=flat" /></a>
-</p>
-
+[![Conan Package](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml/badge.svg)](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml)
+[![Unit Test](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml/badge.svg)](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml)
+[![Repo Size](https://img.shields.io/github/repo-size/lulzbot3d/libSavitarLE?style=flat)](https://github.com/lulzbot3d/libSavitarLE)
+[![License](https://img.shields.io/github/license/lulzbot3d/libSavitarLE?style=flat)](https://github.com/lulzbot3d/libSavitarLE/blob/master/LICENSE)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/lulzbot3d/libSavitarLE/badge)](https://api.securityscorecards.dev/projects/github.com/lulzbot3d/libSavitarLE)
 
 This library contains C++ code and Python bindings for loading 3mf files.
 
 ## License
 
-![License](https://img.shields.io/github/license/lulzbot3d/libSavitarLE?style=flat)  
 Savitar is released under terms of the LGPLv3 License. Terms of the license can be found in the LICENSE file. Or at
 http://www.gnu.org/licenses/lgpl.html
 
@@ -27,13 +19,15 @@ http://www.gnu.org/licenses/lgpl.html
 ## System Requirements
 
 ### Windows
+
 - Python 3.6 or higher
 - Ninja 1.10 or higher
 - VS2022 or higher
 - CMake 3.23 or higher
 - nmake
 
-### MacOs
+### MacOS
+
 - Python 3.6 or higher
 - Ninja 1.10 or higher
 - apply clang 11 or higher
@@ -41,12 +35,12 @@ http://www.gnu.org/licenses/lgpl.html
 - make
 
 ### Linux
+
 - Python 3.6 or higher
 - Ninja 1.10 or higher
 - gcc 12 or higher
 - CMake 3.23 or higher
 - make
-
 
 ## How To Build
 
@@ -69,11 +63,13 @@ conan profile new default --detect --force
 Community developers would have to remove the Conan cura-le repository because it requires credentials. 
 
 LulzBot developers need to request an account for our JFrog Artifactory server with IT
+
 ```bash
 conan remote remove cura-le
 ```
 
 ### 2. Clone libSavitarLE
+
 ```bash
 git clone https://github.com/lulzbot3d/libSavitarLE.git
 cd libSavitarLE
@@ -82,6 +78,7 @@ cd libSavitarLE
 ### 3. Install & Build libSavitarLE (Release OR Debug)
 
 #### Release
+
 ```bash
 conan install . --build=missing --update
 # optional for a specific version: conan install . savitarle/<version>@<user>/<channel> --build=missing --update
@@ -112,7 +109,6 @@ Note: Make sure that the used `<version>` is present in the conandata.yml in the
 
 You can also specify the override at the commandline, to use the newly created package, when you execute the `conan install`
 command in the root of the consuming project, with:
-
 
 ```shell
 conan install . -build=missing --update --require-override=savitarle/<version>@<username>/<channel>
