@@ -1,10 +1,11 @@
 # SavitarLE
 
-[![Conan Package](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml/badge.svg)](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml)
-[![Unit Test](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml/badge.svg)](https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml)
-[![Repo Size](https://img.shields.io/github/repo-size/lulzbot3d/libSavitarLE?style=flat)](https://github.com/lulzbot3d/libSavitarLE)
-[![License](https://img.shields.io/github/license/lulzbot3d/libSavitarLE?style=flat)](https://github.com/lulzbot3d/libSavitarLE/blob/master/LICENSE)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/lulzbot3d/libSavitarLE/badge)](https://api.securityscorecards.dev/projects/github.com/lulzbot3d/libSavitarLE)
+[![Conan Badge]][Conan]
+[![Unit Test Badge]][Unit Test]
+
+[![Size Badge]][Size]
+[![Scorecard Badge]][Scorecard]
+[![License Badge]][License]
 
 This library contains C++ code and Python bindings for loading 3mf files.
 
@@ -128,3 +129,17 @@ Then in your downsteam projects (CuraLE) root directory override the package wit
 ```shell
 conan install . -build=missing --update --require-override=savitarle/<version>@<username>/<channel>
 ```
+
+<!---------------------------------------------------------->
+
+[Conan Badge]: https://img.shields.io/github/actions/workflow/status/lulzbot3d/libSavitarLE/conan-package.yml?style=for-the-badge&logoColor=white&logo=Conan&label=Conan%20Package
+[Unit Test Badge]: https://img.shields.io/github/actions/workflow/status/lulzbot3d/libSavitarLE/unit-test.yml?style=for-the-badge&logoColor=white&logo=Codacy&label=Unit%20Test
+[Size Badge]: https://img.shields.io/github/repo-size/lulzbot3d/libSavitarLE?style=for-the-badge&logoColor=white&logo=GoogleAnalytics
+[License Badge]: https://img.shields.io/github/license/lulzbot3d/libSavitarLE?style=for-the-badge&logoColor=white&logo=GNU
+[Scorecard Badge]: https://img.shields.io/ossf-scorecard/github.com/lulzbot3d/libSavitarLE?style=for-the-badge&logo=GitHub&label=OpenSSF%20Scorecard
+
+[Conan]: https://github.com/lulzbot3d/libSavitarLE/actions/workflows/conan-package.yml
+[Unit Test]: https://github.com/lulzbot3d/libSavitarLE/actions/workflows/unit-test.yml
+[Size]: https://github.com/lulzbot3d/libSavitarLE
+[License]: LICENSE
+[Scorecard]: https://api.securityscorecards.dev/projects/github.com/lulzbot3d/libSavitarLE
