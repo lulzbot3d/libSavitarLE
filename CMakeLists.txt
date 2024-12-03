@@ -5,7 +5,7 @@ find_package(standardprojectsettings REQUIRED)
 
 find_package(pugixml REQUIRED)
 
-set(savitarle_SRCS
+set(savitar_SRCS
         src/Namespace.cpp
         src/ThreeMFParser.cpp
         src/SceneNode.cpp
@@ -16,19 +16,19 @@ set(savitarle_SRCS
         )
 
 if(BUILD_SHARED_LIBS)
-    add_library(SavitarLE SHARED ${savitarle_SRCS})
+    add_library(Savitar SHARED ${savitar_SRCS})
     if(WIN32)
-        set_target_properties(SavitarLE PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+        set_target_properties(Savitar PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
     endif()
 else()
-    add_library(SavitarLE STATIC ${savitarle_SRCS})
+    add_library(Savitar STATIC ${savitar_SRCS})
 endif()
 
-set_project_warnings(SavitarLE)
+set_project_warnings(Savitar)
 
-target_link_libraries(SavitarLE PUBLIC pugixml::pugixml)
+target_link_libraries(Savitar PUBLIC pugixml::pugixml)
 
-target_include_directories(SavitarLE
+target_include_directories(Savitar
         PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
             $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>

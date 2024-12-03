@@ -64,7 +64,7 @@ class SavitarLEConan(ConanFile):
 
     def layout(self):
         cmake_layout(self)
-        self.cpp.package.libs = ["SavitarLE"]
+        self.cpp.package.libs = ["Savitar"]
 
         if self.settings.get_safe("build_type", "Release") == "Debug":
             self.cpp.package.defines = ["SAVITAR_DEBUG"]
