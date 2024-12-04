@@ -15,7 +15,7 @@ required_conan_version = ">=1.56.0"
 
 
 class SavitarLEConan(ConanFile):
-    name = "savitarle"
+    name = "savitar"
     license = "LGPL-3.0"
     author = "Ultimaker B.V., FAME3D LLC."
     url = "https://github.com/lulzbot3d/libSavitarLE"
