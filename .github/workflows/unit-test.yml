@@ -45,7 +45,7 @@ jobs:
     conan-recipe-version:
         uses: lulzbot3d/cura-le-workflows/.github/workflows/conan-recipe-version.yml@main
         with:
-            project_name: savitarle
+            project_name: savitar
 
     unit-test:
         uses: lulzbot3d/cura-le-workflows/.github/workflows/unit-test.yml@main

@@ -7,7 +7,7 @@ set(savitar_TEST
         NamespaceTest
         )
 
-foreach (test ${savitarle_TEST})
+foreach (test ${savitar_TEST})
     add_executable(${test} main.cpp ${test}.cpp)
     target_link_libraries(${test} Savitar GTest::gtest GTest::gmock)
     add_test(${test} ${test})
