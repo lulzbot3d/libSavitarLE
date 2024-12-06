@@ -1,59 +1,49 @@
----
 name: unit-test
 
 on:
-    push:
-        paths:
-            - 'src/**'
-            - 'include/**'
-            - 'test_package/**'
-            - 'tests/**'
-            - 'cmake/**'
-            - 'conanfile.py'
-            - 'conandata.yml'
-            - 'CMakeLists.txt'
-            - '.github/workflows/unit-test.yml'
-            - '.github/workflows/requirements*'
-        branches:
-            - main
-            - master
-            - 'CURA-*'
-            - '[0-9].[0-9]'
-            - '[0-9].[0-9][0-9]'
-        tags:
-            - '[0-9].[0-9].[0-9]'
-            - '[0-9].[0-9][0-9].[0-9]'
-    pull_request:
-        paths:
-            - 'src/**'
-            - 'include/**'
-            - 'test_package/**'
-            - 'tests/**'
-            - 'cmake/**'
-            - 'conanfile.py'
-            - 'conandata.yml'
-            - 'CMakeLists.txt'
-            - '.github/workflows/unit-test.yml'
-            - '.github/workflows/requirements*'
-        branches:
-            - main
-            - master
-            - '[0-9].[0-9]'
-            - '[0-9].[0-9][0-9]'
+  push:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'test_package/**'
+      - 'tests/**'
+      - 'cmake/**'
+      - 'conanfile.py'
+      - 'conandata.yml'
+      - 'CMakeLists.txt'
+      - '.github/workflows/unit-test.yml'
+      - '.github/workflows/requirements*'
+    branches:
+      - main
+      - master
+      - 'CURA-*'
+      - '[0-9].[0-9]*'
+      - '[0-9].[0-9][0-9]*'
+    tags:
+      - '[0-9].[0-9].[0-9]'
+      - '[0-9].[0-9][0-9].[0-9]'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'test_package/**'
+      - 'tests/**'
+      - 'cmake/**'
+      - 'conanfile.py'
+      - 'conandata.yml'
+      - 'CMakeLists.txt'
+      - '.github/workflows/unit-test.yml'
+      - '.github/workflows/requirements*'
+    branches:
+      - main
+      - master
+      - 'CURA-*'
+      - '[0-9].[0-9]*'
+      - '[0-9].[0-9][0-9]*'
 
 jobs:
-    conan-recipe-version:
-        uses: lulzbot3d/cura-le-workflows/.github/workflows/conan-recipe-version.yml@main
-        with:
-            project_name: savitar
-
-    unit-test:
-        uses: lulzbot3d/cura-le-workflows/.github/workflows/unit-test.yml@main
-        needs: [ conan-recipe-version ]
-        with:
-            recipe_id_full: ${{ needs.conan-recipe-version.outputs.recipe_id_full }}
-            conan_extra_args: "-o enable_testing=True"
-            unit_test_cmd: "ctest --output-junit engine_test.xml"
-            unit_test_dir: "build/Release/"
-            build: true
-        secrets: inherit
+  testing:
+    name: Run unit tests
+    uses: lulzbot3d/CuraLE_Workflows/.github/workflows/unit-test.yml@main
+    with:
+      test_use_ctest: true

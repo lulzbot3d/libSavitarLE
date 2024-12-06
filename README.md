@@ -57,7 +57,7 @@ which is quite extensive and well maintained. Conan is a Python program and can 
 
 ```bash
 pip install conan --upgrade
-conan config install https://github.com/lulzbot3d/conan-config-le.git
+conan config install https://github.com/lulzbot3d/Conan_LulzBot_Config.git
 conan profile new default --detect --force
 ```
 

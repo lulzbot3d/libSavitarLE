@@ -7,7 +7,6 @@ from conan.tools.files import copy
 
 class SavitarLETestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "VirtualRunEnv"
     test_type = "explicit"
 
     def requirements(self):
@@ -31,7 +30,6 @@ class SavitarLETestConan(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-
 
     def test(self):
         if can_run(self):
