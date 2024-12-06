@@ -39,7 +39,7 @@ class SavitarLEConan(ConanFile):
 
     def export(self):
         git = Git(self)
-        update_conandata(self, {"version": self.version, "commit": git.getcommit()})
+        update_conandata(self, {"version": self.version, "commit": git.get_commit()})
 
     @property
     def _min_cppstd(self):
